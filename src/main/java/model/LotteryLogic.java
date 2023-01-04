@@ -31,6 +31,7 @@ public class LotteryLogic {
     public void controlLoop() {
         int option;
         do {
+            System.out.println (database );
             show.printOptionsLotteryLogic ( );
             option = io.getOption ( sc );
             switch (option) {

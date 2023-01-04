@@ -13,6 +13,14 @@ public class ChoiceStatistics {
     List<Integer> listChoiceLottery;
     ReaderDB readerDB;
 
+    public List<Integer> getListChoiceLottery() {
+        return listChoiceLottery;
+    }
+
+    public void setListChoiceLottery(List<Integer> listChoiceLottery) {
+        this.listChoiceLottery = listChoiceLottery;
+    }
+
     public ChoiceStatistics() {
     }
 
@@ -44,7 +52,7 @@ public class ChoiceStatistics {
         listChoiceLottery = (List<Integer>) doc.get ( "choice" );
     }
 
-    private boolean ifResultsIsChoice() {
+    public boolean ifResultsIsChoice() {
         return listChoiceLottery != null;
     }
 

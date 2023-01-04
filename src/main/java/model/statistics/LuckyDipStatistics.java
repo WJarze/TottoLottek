@@ -21,6 +21,10 @@ public class LuckyDipStatistics {
 
     }
 
+    public List<Integer> getListLuckyDipLottery() {
+        return listLuckyDipLottery;
+    }
+
     public void setCountAllLuckyDipLottery(AllHitsLuckyDipDraw allHitsLuckyDipDraws) {
         ArrayList<List<Integer>> allLuckyDipDraws = new ArrayList<> ( );
         int countAllLottery = 0;
@@ -46,7 +50,7 @@ public class LuckyDipStatistics {
         listLuckyDipLottery = (List<Integer>) doc.get ( "lucky dip" );
     }
 
-    private boolean ifResultsIsLuckyDip() {
+    public boolean ifResultsIsLuckyDip() {
         return listLuckyDipLottery != null;
     }
 

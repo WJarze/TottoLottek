@@ -9,19 +9,23 @@ import org.bson.Document;
 
 public class ConnectToDatabase {
 
-    private final String nameDatabase;
-    private final String nameCollection;
+    private String nameDatabase;
+    private String nameCollection;
 
     public ConnectToDatabase(String nameDatabase , String nameCollection) {
         this.nameDatabase = nameDatabase;
         this.nameCollection = nameCollection;
     }
 
-    private MongoClient connected() {
-        return MongoClients.create ();
+    public ConnectToDatabase() {
+
     }
 
-    protected MongoDatabase access() {
+    public MongoClient connected() {
+        return MongoClients.create ( );
+    }
+
+    public MongoDatabase access() {
         return connected ( ).getDatabase ( nameDatabase );
     }
 
@@ -39,5 +43,13 @@ public class ConnectToDatabase {
 
     public void exit() {
         connected ( ).close ( );
+    }
+
+    @Override
+    public String toString() {
+        return "ConnectToDatabase{" +
+                "nameDatabase='" + nameDatabase + '\'' +
+                ", nameCollection='" + nameCollection + '\'' +
+                '}';
     }
 }
