@@ -2,14 +2,14 @@ package data.lotto;
 
 import java.util.List;
 
-public class AllHitsChoiceDraw {
+public class AllHitsChoiceDrawFromDB {
     private List<List<Integer>> allChoiceDraws;
 
-    public AllHitsChoiceDraw(List<List<Integer>> allChoiceDraws) {
+    public AllHitsChoiceDrawFromDB(List<List<Integer>> allChoiceDraws) {
         this.allChoiceDraws = allChoiceDraws;
     }
 
-    public AllHitsChoiceDraw() {
+    public AllHitsChoiceDrawFromDB() {
 
     }
 
@@ -27,7 +27,7 @@ public class AllHitsChoiceDraw {
 
     @Override
     public String toString() {
-        return "AllHitsChoiceDraw{" +
+        return "AllHitsChoiceDrawFromDB{" +
                 "allChoiceDraws=" + allChoiceDraws +
                 '}';
     }

@@ -1,7 +1,7 @@
 package model.statistics.controller;
 
 
-import data.lotto.AllHitsLuckyDipDraw;
+import data.lotto.AllHitsLuckyDipDrawFromDB;
 import data.lotto.Lotto;
 import databaseService.ConnectToDatabase;
 import databaseService.ReaderDB;
@@ -28,7 +28,7 @@ public class LuckyDipController {
     ReaderDB readerDB = new ReaderDB ( );
     Show show = new Show ( );
     LuckyDipStatistics luckyDipStatistics = new LuckyDipStatistics ( readerDB );
-    AllHitsLuckyDipDraw allHitsLuckyDipDraws = new AllHitsLuckyDipDraw ( );
+    AllHitsLuckyDipDrawFromDB allHitsLuckyDipDrawsFromDB = new AllHitsLuckyDipDrawFromDB ( );
 
     public LuckyDipController(Scanner scanner, DataReader io , ConnectToDatabase database) {
         this.scanner = scanner;
@@ -39,7 +39,7 @@ public class LuckyDipController {
     public void controlLoop() {
         int option;
         readerDB.listHitFromDB ( database );
-        luckyDipStatistics.setCountAllLuckyDipLottery ( allHitsLuckyDipDraws );
+        luckyDipStatistics.setCountAllLuckyDipLottery ( allHitsLuckyDipDrawsFromDB );
         do {
             show.printOptionsLuckyDipStatistics ( );
             option = io.getOptionLuckyDipController ( scanner );
@@ -51,18 +51,18 @@ public class LuckyDipController {
                     show.databaseExit ( );
                 }
                 case PERCENTAGE_OF_NUMBER_HIT -> {
-                    show.showNumberOfNumberHitsInLuckyDipDraw ( allHitsLuckyDipDraws , lotto , luckyDipStatistics );
-                    show.showPercentNumberOfNumberHitsInLuckyDipDraw ( allHitsLuckyDipDraws , lotto , luckyDipStatistics );
+                    show.showNumberOfNumberHitsInLuckyDipDraw ( allHitsLuckyDipDrawsFromDB , lotto , luckyDipStatistics );
+                    show.showPercentNumberOfNumberHitsInLuckyDipDraw ( allHitsLuckyDipDrawsFromDB , lotto , luckyDipStatistics );
                 }
                 case NUMBER_OF_ALL_LOTTERIES_OF_HIT_IN_DRAW -> {
-                    show.allNotNullLuckyDipDrawsCounter ( allHitsLuckyDipDraws );
-                    show.allLuckyDipDraws ( allHitsLuckyDipDraws );
-                    show.allLuckyDipDrawsHitNumber ( allHitsLuckyDipDraws , luckyDipStatistics );
+                    show.allNotNullLuckyDipDrawsCounter ( allHitsLuckyDipDrawsFromDB );
+                    show.allLuckyDipDraws ( allHitsLuckyDipDrawsFromDB );
+                    show.allLuckyDipDrawsHitNumber ( allHitsLuckyDipDrawsFromDB , luckyDipStatistics );
                 }
                 case NUMBER_OF_ALL_LOTTERIES -> show.allDraws ( readerDB );
                 case HIT_PERCENTAGE -> {
-                    luckyDipStatistics.setCountAllLuckyDipLottery ( allHitsLuckyDipDraws );
-                    show.showLuckyDipPercentHits ( allHitsLuckyDipDraws , lotto , luckyDipStatistics );
+                    luckyDipStatistics.setCountAllLuckyDipLottery ( allHitsLuckyDipDrawsFromDB );
+                    show.showLuckyDipPercentHits ( allHitsLuckyDipDrawsFromDB , lotto , luckyDipStatistics );
                 }
                 case CLEAR_DATABASE -> database.clear ( );
                 default -> printer ( ).print ( "No such option: " );

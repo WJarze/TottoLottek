@@ -1,5 +1,6 @@
 package model.statistics;
 
+import data.lotto.AllHitsLuckyDipDrawFromDB;
 import java.util.Collections;
 import java.util.stream.Stream;
 import java.util.List;
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import data.lotto.AllHitsLuckyDipDraw;
 import java.util.ArrayList;
 import org.mockito.Mockito;
 
@@ -31,8 +31,8 @@ import org.mockito.Mockito;
             loops--;
             int actualLoopValue = loops;
             luckyDipDrawList.add ( draw );
-            AllHitsLuckyDipDraw allHitsLuckyDipDraw = new AllHitsLuckyDipDraw ( luckyDipDrawList );
-            long actual = luckyDipStatistics.numberHitsOfDraws ( allHitsLuckyDipDraw ).count ( );
+            AllHitsLuckyDipDrawFromDB allHitsLuckyDipDrawFromDB = new AllHitsLuckyDipDrawFromDB ( luckyDipDrawList );
+            long actual = luckyDipStatistics.numberHitsOfDraws ( allHitsLuckyDipDrawFromDB ).count ( );
             // Given
             Assertions.assertEquals ( startLoopValue - actualLoopValue , actual );
         }
@@ -46,8 +46,8 @@ import org.mockito.Mockito;
         List<List<Integer>> luckyDipDrawList = new ArrayList<> ( );
         //Then
         luckyDipDrawList.add ( draw );
-        AllHitsLuckyDipDraw allHitsLuckyDipDraw = new AllHitsLuckyDipDraw ( luckyDipDrawList );
-        long actual = luckyDipStatistics.numberOfNumberHitsInLuckyDipDraw ( allHitsLuckyDipDraw , number );
+        AllHitsLuckyDipDrawFromDB allHitsLuckyDipDrawFromDB = new AllHitsLuckyDipDrawFromDB ( luckyDipDrawList );
+        long actual = luckyDipStatistics.numberOfNumberHitsInLuckyDipDraw ( allHitsLuckyDipDrawFromDB , number );
         // Given
         Assertions.assertEquals ( expected , actual );
     }
@@ -69,8 +69,8 @@ import org.mockito.Mockito;
         List<List<Integer>> luckyDipDrawList = new ArrayList<> ( );
         //Then
         luckyDipDrawList.add ( draw );
-        AllHitsLuckyDipDraw allHitsLuckyDipDraw = new AllHitsLuckyDipDraw ( luckyDipDrawList );
-        long actual = luckyDipStatistics.filteredLuckyDipDrawsHitNumber ( allHitsLuckyDipDraw , number );
+        AllHitsLuckyDipDrawFromDB allHitsLuckyDipDrawFromDB = new AllHitsLuckyDipDrawFromDB ( luckyDipDrawList );
+        long actual = luckyDipStatistics.filteredLuckyDipDrawsHitNumber ( allHitsLuckyDipDrawFromDB , number );
         // Given
         Assertions.assertEquals ( expected , actual );
     }

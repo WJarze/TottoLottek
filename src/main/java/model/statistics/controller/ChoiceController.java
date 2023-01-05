@@ -1,7 +1,7 @@
 package model.statistics.controller;
 
 
-import data.lotto.AllHitsChoiceDraw;
+import data.lotto.AllHitsChoiceDrawFromDB;
 import data.lotto.Lotto;
 import databaseService.ConnectToDatabase;
 import databaseService.ReaderDB;
@@ -27,7 +27,7 @@ public class ChoiceController {
     ReaderDB readerDB = new ReaderDB ( );
     Show show = new Show ( );
     ChoiceStatistics choiceStatistics = new ChoiceStatistics ( readerDB );
-    AllHitsChoiceDraw allHitsChoiceDraws = new AllHitsChoiceDraw ( );
+    AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB = new AllHitsChoiceDrawFromDB ( );
 
     public ChoiceController(Scanner scanner , DataReader io,ConnectToDatabase database ) {
         this.scanner = scanner;
@@ -38,7 +38,7 @@ public class ChoiceController {
     public void controlLoop() {
         int option;
         readerDB.listHitFromDB ( database );
-        choiceStatistics.setAllChoiceLottery ( allHitsChoiceDraws );
+        choiceStatistics.setAllChoiceLottery ( allHitsChoiceDrawsFromDB );
         do {
             show.printOptionsChoiceStatistics ( );
             option = io.getOptionChoiceController ( scanner );
@@ -50,16 +50,16 @@ public class ChoiceController {
                     show.databaseExit ( );
                 }
                 case PERCENTAGE_OF_NUMBER_HIT -> {
-                    show.showNumberOfNumberHitsInChoiceDraw ( allHitsChoiceDraws , lotto , choiceStatistics );
-                    show.showPercentNumberOfNumberHitsInChoiceDraw ( allHitsChoiceDraws , lotto , choiceStatistics );
+                    show.showNumberOfNumberHitsInChoiceDraw ( allHitsChoiceDrawsFromDB , lotto , choiceStatistics );
+                    show.showPercentNumberOfNumberHitsInChoiceDraw ( allHitsChoiceDrawsFromDB , lotto , choiceStatistics );
                 }
                 case NUMBER_OF_ALL_LOTTERIES_OF_HIT_IN_DRAW -> {
-                    show.allNotNullChoiceDrawsCounter ( allHitsChoiceDraws );
-                    show.allChoiceDraws ( allHitsChoiceDraws );
-                    show.allChoiceDrawsHitNumber ( allHitsChoiceDraws , choiceStatistics );
+                    show.allNotNullChoiceDrawsCounter ( allHitsChoiceDrawsFromDB );
+                    show.allChoiceDraws ( allHitsChoiceDrawsFromDB );
+                    show.allChoiceDrawsHitNumber ( allHitsChoiceDrawsFromDB , choiceStatistics );
                 }
                 case NUMBER_OF_ALL_LOTTERIES -> show.allDraws ( readerDB );
-                case HIT_PERCENTAGE -> show.showChoicePercentHits ( allHitsChoiceDraws , lotto , choiceStatistics );
+                case HIT_PERCENTAGE -> show.showChoicePercentHits ( allHitsChoiceDrawsFromDB , lotto , choiceStatistics );
                 case CLEAR_DATABASE -> database.clear ( );
                 default -> printer ( ).print ( "No such option: " );
             }

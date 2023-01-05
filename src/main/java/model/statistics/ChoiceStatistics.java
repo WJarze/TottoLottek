@@ -1,6 +1,6 @@
 package model.statistics;
 
-import data.lotto.AllHitsChoiceDraw;
+import data.lotto.AllHitsChoiceDrawFromDB;
 import databaseService.ReaderDB;
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -27,21 +27,21 @@ public class ChoiceStatistics {
         this.readerDB = readerDB;
     }
 
-    public void setAllChoiceLottery(AllHitsChoiceDraw allHitsChoiceDraws) {
+    public void setAllChoiceLottery(AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB) {
         ArrayList<List<Integer>> allChoiceDraws = new ArrayList<> ( );
         int countAllLottery = 0;
         while (countAllLottery < readerDB.getResults ( ).size ( )) {
-            addChoiceDraws ( allHitsChoiceDraws , allChoiceDraws , countAllLottery );
+            addChoiceDraws ( allHitsChoiceDrawsFromDB , allChoiceDraws , countAllLottery );
             countAllLottery++;
         }
     }
 
-    private void addChoiceDraws(AllHitsChoiceDraw allHitsChoiceDraws
+    private void addChoiceDraws(AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB
             , ArrayList<List<Integer>> allChoiceDraws , int countAllLottery) {
         mapDocument ( countAllLottery );
         if ( ifResultsIsChoice ( ) ) {
             allChoiceDraws.add ( listChoiceLottery );
-            allHitsChoiceDraws.setAllChoiceDraws ( allChoiceDraws );
+            allHitsChoiceDrawsFromDB.setAllChoiceDraws ( allChoiceDraws );
         }
     }
     @SuppressWarnings(value = "unchecked")
@@ -54,42 +54,42 @@ public class ChoiceStatistics {
         return listChoiceLottery != null;
     }
 
-    public IntStream numberHitsOfDraws(AllHitsChoiceDraw allHitsChoiceDraws) {
-        return allHitsChoiceDraws.getAllChoiceDraws ( )
+    public IntStream numberHitsOfDraws(AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB) {
+        return allHitsChoiceDrawsFromDB.getAllChoiceDraws ( )
                 .stream ( )
                 .mapToInt ( List::size );
     }
 
 
-    public long numberOfNumberHitsInChoiceDraw(AllHitsChoiceDraw allHitsChoiceDraws , int i) {
-        return getIntStream ( allHitsChoiceDraws )
+    public long numberOfNumberHitsInChoiceDraw(AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB , int i) {
+        return getIntStream ( allHitsChoiceDrawsFromDB )
                 .filter ( hit -> hit == i )
                 .count ( );
     }
 
-    public  IntStream getIntStream(AllHitsChoiceDraw allHitsChoiceDraws) {
-        return allHitsChoiceDraws.getAllChoiceDraws ( )
+    public  IntStream getIntStream(AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB) {
+        return allHitsChoiceDrawsFromDB.getAllChoiceDraws ( )
                 .stream ( )
                 .flatMapToInt ( list -> list.stream ( ).mapToInt ( hit -> hit ) );
     }
 
-    public BigDecimal percentNumberOfNumberHitsInChoiceDraw(AllHitsChoiceDraw allHitsChoiceDraws , int i) {
-        double percentNumberOfNumberHits = (double) numberOfNumberHitsInChoiceDraw ( allHitsChoiceDraws , i ) * 100
-                / allHitsChoiceDraws.getAllChoiceDraws ( ).size ( );
+    public BigDecimal percentNumberOfNumberHitsInChoiceDraw(AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB , int i) {
+        double percentNumberOfNumberHits = (double) numberOfNumberHitsInChoiceDraw ( allHitsChoiceDrawsFromDB , i ) * 100
+                / allHitsChoiceDrawsFromDB.getAllChoiceDraws ( ).size ( );
         BigDecimal bd = BigDecimal.valueOf ( percentNumberOfNumberHits );
         return new BigDecimal ( String.valueOf ( bd ) , mc );
     }
 
-    public long filteredChoiceDrawsHitNumber(AllHitsChoiceDraw allHitsChoiceDraws , int index) {
-        return numberHitsOfDraws ( allHitsChoiceDraws )
+    public long filteredChoiceDrawsHitNumber(AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB , int index) {
+        return numberHitsOfDraws ( allHitsChoiceDrawsFromDB )
                 .filter ( e -> e == index )
                 .boxed ( )
                 .count ( );
     }
 
-    public BigDecimal percentHitsOfChoice(AllHitsChoiceDraw allHitsChoiceDraws , int index) {
-        double percentHits = (double) filteredChoiceDrawsHitNumber ( allHitsChoiceDraws , index ) * 100
-                / allHitsChoiceDraws.getAllChoiceDraws ( ).size ( );
+    public BigDecimal percentHitsOfChoice(AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB , int index) {
+        double percentHits = (double) filteredChoiceDrawsHitNumber ( allHitsChoiceDrawsFromDB , index ) * 100
+                / allHitsChoiceDrawsFromDB.getAllChoiceDraws ( ).size ( );
         BigDecimal bd = BigDecimal.valueOf ( percentHits );
         return new BigDecimal ( String.valueOf ( bd ) , mc );
     }

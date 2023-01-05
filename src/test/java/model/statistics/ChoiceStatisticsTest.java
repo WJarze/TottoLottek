@@ -1,6 +1,6 @@
 package model.statistics;
 
-import data.lotto.AllHitsChoiceDraw;
+import data.lotto.AllHitsChoiceDrawFromDB;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -30,8 +30,8 @@ class ChoiceStatisticsTest {
             loops--;
             int actualLoopValue = loops;
             userDrawList.add ( draw );
-            AllHitsChoiceDraw allHitsChoiceDraws = new AllHitsChoiceDraw ( userDrawList );
-            long actual = choiceStatistics.numberHitsOfDraws ( allHitsChoiceDraws ).count ( );
+            AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB = new AllHitsChoiceDrawFromDB ( userDrawList );
+            long actual = choiceStatistics.numberHitsOfDraws ( allHitsChoiceDrawsFromDB ).count ( );
 
             // Given
             Assertions.assertEquals ( startLoopValue - actualLoopValue , actual );
@@ -45,8 +45,8 @@ class ChoiceStatisticsTest {
         List<List<Integer>> choiceDrawList = new ArrayList<> ( );
         //Then
         choiceDrawList.add ( draw );
-        AllHitsChoiceDraw allHitsChoiceDraw = new AllHitsChoiceDraw ( choiceDrawList );
-        long actual = choiceStatistics.numberOfNumberHitsInChoiceDraw ( allHitsChoiceDraw , number );
+        AllHitsChoiceDrawFromDB allHitsChoiceDrawFromDB = new AllHitsChoiceDrawFromDB ( choiceDrawList );
+        long actual = choiceStatistics.numberOfNumberHitsInChoiceDraw ( allHitsChoiceDrawFromDB , number );
         // Given
         Assertions.assertEquals ( expected , actual );
     }

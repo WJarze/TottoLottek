@@ -1,7 +1,7 @@
 package io.output;
 
-import data.lotto.AllHitsChoiceDraw;
-import data.lotto.AllHitsLuckyDipDraw;
+import data.lotto.AllHitsChoiceDrawFromDB;
+import data.lotto.AllHitsLuckyDipDrawFromDB;
 import data.lotto.Hits;
 import data.lotto.Lotto;
 import databaseService.ReaderDB;
@@ -63,34 +63,34 @@ public class Show {
         printer ( ).print ( Message.NO_OPTION.getMsg ( ) );
     }
 
-    public void showLuckyDipPercentHits(AllHitsLuckyDipDraw allHitsLuckyDipDraws
+    public void showLuckyDipPercentHits(AllHitsLuckyDipDrawFromDB allHitsLuckyDipDrawsFromDB
             , Lotto lotto , LuckyDipStatistics luckyDipStatistics) {
         for (int i = 0; i < lotto.getNumbers ( ) + 1; i++) {
             printer ( ).print ( "hit percentage " + i + " = "
-                    + luckyDipStatistics.percentHitsOfLuckyDip ( allHitsLuckyDipDraws , i ) + " % " );
+                    + luckyDipStatistics.percentHitsOfLuckyDip ( allHitsLuckyDipDrawsFromDB , i ) + " % " );
         }
     }
 
-    public void showPercentNumberOfNumberHitsInLuckyDipDraw(AllHitsLuckyDipDraw allHitsLuckyDipDraws
+    public void showPercentNumberOfNumberHitsInLuckyDipDraw(AllHitsLuckyDipDrawFromDB allHitsLuckyDipDrawsFromDB
             , Lotto lotto , LuckyDipStatistics luckyDipStatistics) {
         for (int i = lotto.getMinNumbers ( ); i <= lotto.getMaxNumbers ( ); i++) {
             printer ( ).print ( "percentage of hits for each number " + i + " = "
-                    + luckyDipStatistics.percentNumberOfNumberHitsInLuckyDipDraw ( allHitsLuckyDipDraws , i ) + " % " );
+                    + luckyDipStatistics.percentNumberOfNumberHitsInLuckyDipDraw ( allHitsLuckyDipDrawsFromDB , i ) + " % " );
         }
     }
 
-    public void showNumberOfNumberHitsInLuckyDipDraw(AllHitsLuckyDipDraw allHitsLuckyDipDraws
+    public void showNumberOfNumberHitsInLuckyDipDraw(AllHitsLuckyDipDrawFromDB allHitsLuckyDipDrawsFromDB
             , Lotto lotto
             , LuckyDipStatistics luckyDipStatistics) {
         for (int i = lotto.getMinNumbers ( ); i <= lotto.getMaxNumbers ( ); i++) {
             printer ( ).print ( "number of number hits " + i + " = "
-                    + luckyDipStatistics.numberOfNumberHitsInLuckyDipDraw ( allHitsLuckyDipDraws , i ) );
+                    + luckyDipStatistics.numberOfNumberHitsInLuckyDipDraw ( allHitsLuckyDipDrawsFromDB , i ) );
         }
     }
 
-    public void allNotNullLuckyDipDrawsCounter(AllHitsLuckyDipDraw allHitsLuckyDipDraws) {
+    public void allNotNullLuckyDipDrawsCounter(AllHitsLuckyDipDrawFromDB allHitsLuckyDipDrawsFromDB) {
         printer ( ).print ( Message.ALL_LUCKY_DIP.getMsg ( )
-                + allHitsLuckyDipDraws.getAllLuckyDipDraws ( ).size ( ) );
+                + allHitsLuckyDipDrawsFromDB.getAllLuckyDipDraws ( ).size ( ) );
     }
 
     public void databaseExit() {
@@ -111,56 +111,56 @@ public class Show {
         printer ( ).print ( Message.NUMBER_OF_ALL_LOTTERIES.getMsg ( ) + readerDB.size ( ) );
     }
 
-    public void allLuckyDipDraws(AllHitsLuckyDipDraw allHitsLuckyDipDraws) {
-        allHitsLuckyDipDraws.getAllLuckyDipDraws ( )
+    public void allLuckyDipDraws(AllHitsLuckyDipDrawFromDB allHitsLuckyDipDrawsFromDB) {
+        allHitsLuckyDipDrawsFromDB.getAllLuckyDipDraws ( )
                 .forEach ( e -> printer ( ).print ( String.valueOf ( e ) ) );
     }
 
-    public void allLuckyDipDrawsHitNumber(AllHitsLuckyDipDraw allHitsLuckyDipDraws , LuckyDipStatistics luckyDipStatistics) {
-        luckyDipStatistics.numberHitsOfDraws ( allHitsLuckyDipDraws )
+    public void allLuckyDipDrawsHitNumber(AllHitsLuckyDipDrawFromDB allHitsLuckyDipDrawsFromDB , LuckyDipStatistics luckyDipStatistics) {
+        luckyDipStatistics.numberHitsOfDraws ( allHitsLuckyDipDrawsFromDB )
                 .boxed ( )
                 .toList ( )
                 .forEach ( e -> printer ( ).print ( String.valueOf ( e ) ) );
     }
 
-    public void showChoicePercentHits(AllHitsChoiceDraw allHitsChoiceDraws
+    public void showChoicePercentHits(AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB
             , Lotto lotto , ChoiceStatistics choiceStatistics) {
         for (int i = 0; i < lotto.getNumbers ( ) + 1; i++) {
             printer ( ).print ( "hit percentage " + i + " = "
-                    + choiceStatistics.percentHitsOfChoice ( allHitsChoiceDraws , i ) + " % " );
+                    + choiceStatistics.percentHitsOfChoice ( allHitsChoiceDrawsFromDB , i ) + " % " );
         }
     }
 
-    public void allChoiceDrawsHitNumber(AllHitsChoiceDraw allHitsChoiceDraws , ChoiceStatistics choiceStatistics) {
-        choiceStatistics.numberHitsOfDraws ( allHitsChoiceDraws )
+    public void allChoiceDrawsHitNumber(AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB , ChoiceStatistics choiceStatistics) {
+        choiceStatistics.numberHitsOfDraws ( allHitsChoiceDrawsFromDB )
                 .boxed ( )
                 .toList ( )
                 .forEach ( e -> printer ( ).print ( String.valueOf ( e ) ) );
     }
 
-    public void allChoiceDraws(AllHitsChoiceDraw allHitsChoiceDraws) {
-        allHitsChoiceDraws.getAllChoiceDraws ( )
+    public void allChoiceDraws(AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB) {
+        allHitsChoiceDrawsFromDB.getAllChoiceDraws ( )
                 .forEach ( e -> printer ( ).print ( String.valueOf ( e ) ) );
     }
 
-    public void allNotNullChoiceDrawsCounter(AllHitsChoiceDraw allHitsChoiceDraws) {
+    public void allNotNullChoiceDrawsCounter(AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB) {
         printer ( ).print ( Message.ALL_CHOICE.getMsg ( )
-                + allHitsChoiceDraws.getAllChoiceDraws ( ).size ( ) );
+                + allHitsChoiceDrawsFromDB.getAllChoiceDraws ( ).size ( ) );
     }
 
-    public void showPercentNumberOfNumberHitsInChoiceDraw(AllHitsChoiceDraw allHitsChoiceDraws
+    public void showPercentNumberOfNumberHitsInChoiceDraw(AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB
             , Lotto lotto , ChoiceStatistics choiceStatistics) {
         for (int i = lotto.getMinNumbers ( ); i <= lotto.getMaxNumbers ( ); i++) {
             printer ( ).print ( "percentage of hits for each number " + i + " = "
-                    + choiceStatistics.percentNumberOfNumberHitsInChoiceDraw ( allHitsChoiceDraws , i ) + " % " );
+                    + choiceStatistics.percentNumberOfNumberHitsInChoiceDraw ( allHitsChoiceDrawsFromDB , i ) + " % " );
         }
     }
 
-    public void showNumberOfNumberHitsInChoiceDraw(AllHitsChoiceDraw allHitsChoiceDraws
+    public void showNumberOfNumberHitsInChoiceDraw(AllHitsChoiceDrawFromDB allHitsChoiceDrawsFromDB
             , Lotto lotto , ChoiceStatistics choiceStatistics) {
         for (int i = lotto.getMinNumbers ( ); i <= lotto.getMaxNumbers ( ); i++) {
             printer ( ).print ( "number of number hits " + i + " = "
-                    + choiceStatistics.numberOfNumberHitsInChoiceDraw ( allHitsChoiceDraws , i ) );
+                    + choiceStatistics.numberOfNumberHitsInChoiceDraw ( allHitsChoiceDrawsFromDB , i ) );
         }
     }
 

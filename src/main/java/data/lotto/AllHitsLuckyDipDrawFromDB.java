@@ -3,14 +3,14 @@ package data.lotto;
 
 import java.util.List;
 
-public class AllHitsLuckyDipDraw {
+public class AllHitsLuckyDipDrawFromDB {
     private List<List<Integer>> allLuckyDipDraws;
 
-    public AllHitsLuckyDipDraw(List<List<Integer>> allLuckyDipDraws) {
+    public AllHitsLuckyDipDrawFromDB(List<List<Integer>> allLuckyDipDraws) {
         this.allLuckyDipDraws = allLuckyDipDraws;
     }
 
-    public AllHitsLuckyDipDraw() {
+    public AllHitsLuckyDipDrawFromDB() {
 
     }
 
@@ -28,7 +28,7 @@ public class AllHitsLuckyDipDraw {
 
     @Override
     public String toString() {
-        return "AllHitsLuckyDipDraw{" +
+        return "AllHitsLuckyDipDrawFromDB{" +
                 "allLuckyDipDraws=" + allLuckyDipDraws +
                 '}';
     }
