@@ -12,7 +12,6 @@ import model.statistics.LuckyDipStatistics;
 
 import static io.output.Printer.printer;
 
-
 public class Show {
     public static final int EXIT = 0;
     public static final int CHOICE_NUMBERS = 1;
@@ -56,7 +55,7 @@ public class Show {
                 + LUCKY_DIP_STATISTICS + " - " + Message.HITS_FROM_DATABASE.getMsg ( ) );
     }
 
-    public void hits(Hits hits) {
+    public void showHits(Hits hits) {
         printer ( ).print ( String.valueOf ( hits ) );
     }
 
@@ -68,15 +67,15 @@ public class Show {
             , Lotto lotto , LuckyDipStatistics luckyDipStatistics) {
         for (int i = 0; i < lotto.getNumbers ( ) + 1; i++) {
             printer ( ).print ( "hit percentage " + i + " = "
-                    + luckyDipStatistics.percentHitsOf ( allHitsLuckyDipDraws , i ) * 100 + " % " );
+                    + luckyDipStatistics.percentHitsOfLuckyDip ( allHitsLuckyDipDraws , i ) + " % " );
         }
     }
 
     public void showPercentNumberOfNumberHitsInLuckyDipDraw(AllHitsLuckyDipDraw allHitsLuckyDipDraws
             , Lotto lotto , LuckyDipStatistics luckyDipStatistics) {
         for (int i = lotto.getMinNumbers ( ); i <= lotto.getMaxNumbers ( ); i++) {
-            printer ( ).print ( "number of number hits " + i + " = "
-                    + luckyDipStatistics.percentNumberOfNumberHitsInLuckyDipDraw ( allHitsLuckyDipDraws , i ) * 100 + " % " );
+            printer ( ).print ( "percentage of hits for each number " + i + " = "
+                    + luckyDipStatistics.percentNumberOfNumberHitsInLuckyDipDraw ( allHitsLuckyDipDraws , i ) + " % " );
         }
     }
 
@@ -111,11 +110,13 @@ public class Show {
     public void allDraws(ReaderDB readerDB) {
         printer ( ).print ( Message.NUMBER_OF_ALL_LOTTERIES.getMsg ( ) + readerDB.size ( ) );
     }
+
     public void allLuckyDipDraws(AllHitsLuckyDipDraw allHitsLuckyDipDraws) {
         allHitsLuckyDipDraws.getAllLuckyDipDraws ( )
                 .forEach ( e -> printer ( ).print ( String.valueOf ( e ) ) );
     }
-    public void allLuckyDipDrawsHitNumber(AllHitsLuckyDipDraw allHitsLuckyDipDraws, LuckyDipStatistics luckyDipStatistics) {
+
+    public void allLuckyDipDrawsHitNumber(AllHitsLuckyDipDraw allHitsLuckyDipDraws , LuckyDipStatistics luckyDipStatistics) {
         luckyDipStatistics.numberHitsOfDraws ( allHitsLuckyDipDraws )
                 .boxed ( )
                 .toList ( )
@@ -126,7 +127,7 @@ public class Show {
             , Lotto lotto , ChoiceStatistics choiceStatistics) {
         for (int i = 0; i < lotto.getNumbers ( ) + 1; i++) {
             printer ( ).print ( "hit percentage " + i + " = "
-                    + choiceStatistics.percentHitsOfChoice ( allHitsChoiceDraws , i ) * 100 + " % " );
+                    + choiceStatistics.percentHitsOfChoice ( allHitsChoiceDraws , i ) + " % " );
         }
     }
 
@@ -150,8 +151,8 @@ public class Show {
     public void showPercentNumberOfNumberHitsInChoiceDraw(AllHitsChoiceDraw allHitsChoiceDraws
             , Lotto lotto , ChoiceStatistics choiceStatistics) {
         for (int i = lotto.getMinNumbers ( ); i <= lotto.getMaxNumbers ( ); i++) {
-            printer ( ).print ( "number of number hits " + i + " = "
-                    + choiceStatistics.percentNumberOfNumberHitsInChoiceDraw ( allHitsChoiceDraws , i ) * 100 + " % " );
+            printer ( ).print ( "percentage of hits for each number " + i + " = "
+                    + choiceStatistics.percentNumberOfNumberHitsInChoiceDraw ( allHitsChoiceDraws , i ) + " % " );
         }
     }
 
@@ -177,6 +178,6 @@ public class Show {
         printer ( ).print ( Message.OPTION.getMsg ( ) + "\n"
                 + EXIT + Message.EXIT.getMsg ( ) + "\n"
                 + CHOICE_NUMBERS + " - " + Message.CHOICE_NUMBERS.getMsg ( ) + "\n"
-                + LUCKY_DIP + " - " + Message.LUCKY_DIP_NUMBERS.getMsg ( ) + "\n");
+                + LUCKY_DIP + " - " + Message.LUCKY_DIP_NUMBERS.getMsg ( ) + "\n" );
     }
 }

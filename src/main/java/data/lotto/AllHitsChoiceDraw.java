@@ -9,7 +9,6 @@ public class AllHitsChoiceDraw {
         this.allChoiceDraws = allChoiceDraws;
     }
 
-
     public AllHitsChoiceDraw() {
 
     }

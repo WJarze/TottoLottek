@@ -8,7 +8,6 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 public class ConnectToDatabase {
-
     private String nameDatabase;
     private String nameCollection;
 

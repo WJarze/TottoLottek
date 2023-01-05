@@ -31,7 +31,6 @@ public class LotteryLogic {
     public void controlLoop() {
         int option;
         do {
-            System.out.println (database );
             show.printOptionsLotteryLogic ( );
             option = io.getOption ( sc );
             switch (option) {
@@ -39,17 +38,17 @@ public class LotteryLogic {
                     lottoCheckWin.checkWinChoice ( );
                     lottoCheckWin.showChoiceResult ( show );
                     lottoCheckWin.setChoiceHit ( hit );
-                    hits.saveChoiceHints ( hit );
+                    hits.saveChoiceHits ( hit );
                     database.addOne ( hit.hitChoiceDTO ( ) );
                 }
                 case LUCKY_DIP -> {
                     lottoCheckWin.checkWinLuckyDip ( );
                     lottoCheckWin.showLuckyDipResult ( show );
                     lottoCheckWin.setLuckyDipHit ( hit );
-                    hits.saveLuckyDipHints ( hit );
+                    hits.saveLuckyDipHits ( hit );
                     database.addOne ( hit.hitLuckyDipDTO ( ) );
                 }
-                case HITS -> show.hits ( hits );
+                case HITS -> show.showHits ( hits );
                 case LUCKY_DIP_STATISTICS -> statisticsController.controlLoop ( );
                 case EXIT -> io.exit ( sc );
                 default -> show.noOption ( );

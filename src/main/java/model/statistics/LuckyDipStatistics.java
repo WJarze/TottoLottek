@@ -3,15 +3,18 @@ package model.statistics;
 
 import data.lotto.AllHitsLuckyDipDraw;
 import databaseService.ReaderDB;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 import org.bson.Document;
 
 public class LuckyDipStatistics {
-    int countAllLuckyDipLottery;
-    List<Integer> listLuckyDipLottery;
-    ReaderDB readerDB;
+    private List<Integer> listLuckyDipLottery;
+    private ReaderDB readerDB;
+    private final MathContext mc = new MathContext ( 4 , RoundingMode.HALF_UP );
 
     public LuckyDipStatistics(ReaderDB readerDB) {
         this.readerDB = readerDB;
@@ -40,7 +43,6 @@ public class LuckyDipStatistics {
         if ( ifResultsIsLuckyDip ( ) ) {
             allLuckyDipDraws.add ( listLuckyDipLottery );
             allHitsLuckyDipDraws.setAllLuckyDipDraws ( allLuckyDipDraws );
-            countAllLuckyDipLottery++;
         }
     }
 
@@ -66,15 +68,18 @@ public class LuckyDipStatistics {
                 .count ( );
     }
 
-    private  IntStream getIntStream(AllHitsLuckyDipDraw allHitsLuckyDipDraws) {
+    private IntStream getIntStream(AllHitsLuckyDipDraw allHitsLuckyDipDraws) {
         return allHitsLuckyDipDraws.getAllLuckyDipDraws ( )
                 .stream ( )
                 .flatMapToInt ( list -> list.stream ( ).mapToInt ( hit -> hit ) );
     }
 
-    public double percentNumberOfNumberHitsInLuckyDipDraw(AllHitsLuckyDipDraw allHitsLuckyDipDraws , int index) {
-        return (double) numberOfNumberHitsInLuckyDipDraw ( allHitsLuckyDipDraws , index )
+    public BigDecimal percentNumberOfNumberHitsInLuckyDipDraw(AllHitsLuckyDipDraw allHitsLuckyDipDraws , int index) {
+
+        double percentNumberOfNumberHits = (double) numberOfNumberHitsInLuckyDipDraw ( allHitsLuckyDipDraws , index ) * 100
                 / allHitsLuckyDipDraws.getAllLuckyDipDraws ( ).size ( );
+        BigDecimal bd = BigDecimal.valueOf ( percentNumberOfNumberHits );
+        return new BigDecimal ( String.valueOf ( bd ) , mc );
     }
 
     public long filteredLuckyDipDrawsHitNumber(AllHitsLuckyDipDraw allHitsLuckyDipDraws , int index) {
@@ -84,8 +89,10 @@ public class LuckyDipStatistics {
                 .count ( );
     }
 
-    public double percentHitsOf(AllHitsLuckyDipDraw allHitsLuckyDipDraws , int index) {
-        return (double) filteredLuckyDipDrawsHitNumber ( allHitsLuckyDipDraws , index )
+    public BigDecimal percentHitsOfLuckyDip(AllHitsLuckyDipDraw allHitsLuckyDipDraws , int index) {
+        double percentHits = (double) filteredLuckyDipDrawsHitNumber ( allHitsLuckyDipDraws , index ) * 100
                 / allHitsLuckyDipDraws.getAllLuckyDipDraws ( ).size ( );
+        BigDecimal bd = BigDecimal.valueOf ( percentHits );
+        return new BigDecimal ( String.valueOf ( bd ) , mc );
     }
 }

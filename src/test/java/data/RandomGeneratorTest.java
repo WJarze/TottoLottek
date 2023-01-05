@@ -6,6 +6,7 @@ import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RandomGeneratorTest extends RandomGenerator {
@@ -35,7 +36,7 @@ class RandomGeneratorTest extends RandomGenerator {
         int loops = 100_0000;
         while (loops > 0) {
             Set<Integer> currentRandomInt = generate ( generatorConditions );
-            assertTrue ( currentRandomInt.size ( ) == 6 );
+            assertEquals ( 6 , currentRandomInt.size ( ) );
             loops--;
         }
     }

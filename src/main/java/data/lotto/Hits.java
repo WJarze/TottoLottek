@@ -8,11 +8,11 @@ public class Hits {
     List<List<Integer>> hitsLuckyDipList = new ArrayList<> ( );
     List<List<Integer>> hitsChoiceList = new ArrayList<> ( );
 
-    public void saveLuckyDipHints(Hit hit) {
+    public void saveLuckyDipHits(Hit hit) {
         hitsLuckyDipList.add ( hit.getHitLuckyDip ( ) );
     }
 
-    public void saveChoiceHints(Hit hit) {
+    public void saveChoiceHits(Hit hit) {
         hitsChoiceList.add ( hit.getHitChoice ( ) );
     }
 

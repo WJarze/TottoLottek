@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Assertions;import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 
-public class ConnectToDatabaseTest {
+ class ConnectToDatabaseTest {
     ConnectToDatabase connectToDatabase = new ConnectToDatabase ();
 
     @Test
-    public void testCollection() {
+    void testCollection() {
         ConnectToDatabase connectToDatabaseMock = Mockito.mock ( ConnectToDatabase.class );
         connectToDatabaseMock.collection ( );
         Mockito.verify ( connectToDatabaseMock , Mockito.times ( 1 ) ).collection ( );
@@ -16,7 +16,7 @@ public class ConnectToDatabaseTest {
 
 
     @Test
-    public void testConnected() {
+     void testConnected() {
         ConnectToDatabase connectToDatabaseMock = Mockito.mock ( ConnectToDatabase.class );
         connectToDatabaseMock.connected ( );
         Mockito.verify ( connectToDatabaseMock , Mockito.times ( 1 ) ).connected ( );
@@ -26,7 +26,7 @@ public class ConnectToDatabaseTest {
 
 
     @Test
-    public void testAccess() {
+     void testAccess() {
 
         ConnectToDatabase connectToDatabaseMock = Mockito.mock ( ConnectToDatabase.class );
         connectToDatabaseMock.access ( );

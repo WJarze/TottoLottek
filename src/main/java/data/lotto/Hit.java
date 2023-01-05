@@ -1,15 +1,11 @@
 package data.lotto;
 
-
 import java.util.List;
 import org.bson.Document;
 
-
 public class Hit {
-
     private List<Integer> hitLuckyDip;
     private List<Integer> hitChoice;
-
 
     public List<Integer> getHitChoice() {
         return hitChoice;
@@ -39,9 +35,9 @@ public class Hit {
 
     @Override
     public String toString() {
-        return "Hint{" +
-                "hintLuckyDip=" + hitLuckyDip +
-                ", hintChoice=" + hitChoice +
+        return "Hit{" +
+                "hitLuckyDip=" + hitLuckyDip +
+                ", hitChoice=" + hitChoice +
                 '}';
     }
 }

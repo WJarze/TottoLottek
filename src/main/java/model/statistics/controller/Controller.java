@@ -1,6 +1,5 @@
 package model.statistics.controller;
 
-
 import databaseService.ConnectToDatabase;
 import io.DataReader;
 import io.output.Show;

@@ -25,7 +25,7 @@ class LuckyDipTest extends LuckyDip {
 
     @DisplayName("Should bounds from 1 to 49 ")
     @Test
-    void should_return_true_if_number_is_beetween_1_to_49() {
+    void should_return_true_if_number_is_between_1_to_49() {
         int loops = 100_000;
 
         while (loops > 0) {
@@ -47,7 +47,7 @@ class LuckyDipTest extends LuckyDip {
         }
     }
 
-    @DisplayName("Should countGuessedNumbers() return how many lottery numbers you guessed")
+    @DisplayName("Should countGuessedNumbers return how many lottery numbers you guessed")
     @ParameterizedTest
     @MethodSource("countGuessedNumbersArgumentsProvider")
     void countGuessedNumbers(int expected , Set<Integer> numbersGuessed , Set<Integer> lotteryNumbers) {
@@ -64,7 +64,7 @@ class LuckyDipTest extends LuckyDip {
         );
     }
 
-    @DisplayName("Should luckyDipNumbersHint() return list numbers you guessed")
+    @DisplayName("Should luckyDipNumbersHint return list numbers you guessed")
     @ParameterizedTest
     @MethodSource("luckyDipNumbersHintArgumentsProvider")
     void luckyDipNumbersHint(List<Integer> expected , Set<Integer> luckyDip , Set<Integer> randNums) {

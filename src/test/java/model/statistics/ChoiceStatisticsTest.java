@@ -18,7 +18,7 @@ class ChoiceStatisticsTest {
 
     @DisplayName("should be returned how many draws of the user")
     @Test
-    public void numberHitsOfDraws() {
+     void numberHitsOfDraws() {
         // When
         List<Integer> draw = List.of ( 1 , 2 , 3 );
         List<List<Integer>> userDrawList = new ArrayList<> ( );
@@ -41,7 +41,7 @@ class ChoiceStatisticsTest {
     @DisplayName("should return what number how many hits")
     @ParameterizedTest
     @MethodSource("isNumberChoiceHitsArgumentsProvider")
-    public void testNumberOfNumberHitsInChoiceDraw(int expected , int number , List<Integer> draw) {
+     void testNumberOfNumberHitsInChoiceDraw(int expected , int number , List<Integer> draw) {
         List<List<Integer>> choiceDrawList = new ArrayList<> ( );
         //Then
         choiceDrawList.add ( draw );
@@ -62,11 +62,12 @@ class ChoiceStatisticsTest {
     }
 
     @Test
-    public void testIfResultsIsLuckyDip() {
-        // when
+     void testIfResultsIsChoice() {
+        // When
         ChoiceStatistics choiceStatisticsMock = Mockito.mock ( ChoiceStatistics.class );
+        // Then
         Mockito.when ( choiceStatisticsMock.getListChoiceLottery ( ) ).thenReturn ( List.of ( 1 , 2 , 3 ) );
-        // then
-        choiceStatistics.ifResultsIsChoice ( );
+        // Given
+        Assertions.assertFalse ( choiceStatistics.ifResultsIsChoice ( ) );
     }
 }

@@ -38,7 +38,7 @@ public class ChoiceController {
     public void controlLoop() {
         int option;
         readerDB.listHitFromDB ( database );
-        choiceStatistics.setCountAllChoiceLottery ( allHitsChoiceDraws );
+        choiceStatistics.setAllChoiceLottery ( allHitsChoiceDraws );
         do {
             show.printOptionsChoiceStatistics ( );
             option = io.getOptionChoiceController ( scanner );

@@ -15,16 +15,15 @@ import data.lotto.AllHitsLuckyDipDraw;
 import java.util.ArrayList;
 import org.mockito.Mockito;
 
-public class LuckyDipStatisticsTest {
+ class LuckyDipStatisticsTest {
     LuckyDipStatistics luckyDipStatistics = new LuckyDipStatistics ( );
 
     @DisplayName("should be returned how many lucky dip draws")
     @Test
-    public void numberHitsOfDraws() {
+     void numberHitsOfDraws() {
         // When
         List<Integer> draw = List.of ( 1 , 2 , 3 , 0 , 0 , 0 );
         List<List<Integer>> luckyDipDrawList = new ArrayList<> ( );
-
         //Then
         int loops = 100_000;
         int startLoopValue = loops;
@@ -34,7 +33,6 @@ public class LuckyDipStatisticsTest {
             luckyDipDrawList.add ( draw );
             AllHitsLuckyDipDraw allHitsLuckyDipDraw = new AllHitsLuckyDipDraw ( luckyDipDrawList );
             long actual = luckyDipStatistics.numberHitsOfDraws ( allHitsLuckyDipDraw ).count ( );
-
             // Given
             Assertions.assertEquals ( startLoopValue - actualLoopValue , actual );
         }
@@ -43,7 +41,7 @@ public class LuckyDipStatisticsTest {
     @DisplayName("should return what number how many hits")
     @ParameterizedTest
     @MethodSource("isNumberLuckyDipHitsArgumentsProvider")
-    public void testNumberOfNumberHitsInLuckyDipDraw(int expected , int number , List<Integer> draw) {
+     void testNumberOfNumberHitsInLuckyDipDraw(int expected , int number , List<Integer> draw) {
 
         List<List<Integer>> luckyDipDrawList = new ArrayList<> ( );
         //Then
@@ -52,7 +50,6 @@ public class LuckyDipStatisticsTest {
         long actual = luckyDipStatistics.numberOfNumberHitsInLuckyDipDraw ( allHitsLuckyDipDraw , number );
         // Given
         Assertions.assertEquals ( expected , actual );
-
     }
 
     private static Stream<Arguments> isNumberLuckyDipHitsArgumentsProvider() {
@@ -68,9 +65,7 @@ public class LuckyDipStatisticsTest {
     @DisplayName("should return what number how many hits")
     @ParameterizedTest
     @MethodSource("isNumberLuckyDipDrawHitsArgumentsProvider")
-    public void testFilteredLuckyDipDrawsHitNumber(int expected , int number , List<Integer> draw) {
-        // Initialize the object to be tested
-
+     void testFilteredLuckyDipDrawsHitNumber(int expected , int number , List<Integer> draw) {
         List<List<Integer>> luckyDipDrawList = new ArrayList<> ( );
         //Then
         luckyDipDrawList.add ( draw );
@@ -91,11 +86,12 @@ public class LuckyDipStatisticsTest {
     }
 
     @Test
-    public void testIfResultsIsLuckyDip() {
+     void testIfResultsIsLuckyDip() {
         // when
         LuckyDipStatistics luckyDipStatisticsMock = Mockito.mock ( LuckyDipStatistics.class );
-        Mockito.when ( luckyDipStatisticsMock.getListLuckyDipLottery ( ) ).thenReturn ( List.of ( 1 , 2 , 3 ) );
         // then
-        luckyDipStatistics.ifResultsIsLuckyDip ( );
+        Mockito.when ( luckyDipStatisticsMock.getListLuckyDipLottery ( ) ).thenReturn ( null );
+        //Given
+        Assertions.assertFalse (luckyDipStatistics.ifResultsIsLuckyDip ( ));
     }
 }
