@@ -9,7 +9,7 @@ This is number lottery. Users make choise six numbers from forty nine or choice 
 ## Installation
 * Clone the repo
   ```sh
-  git clone https://github.com/WJarze/lotto.git
+  git clone https://github.com/WJarze/TottoLottek.git
   ```
   
 ## Functionality
