@@ -51,9 +51,9 @@ Package data includes class:
 * Conditions - enum class defines the conditions of the lottery 
 * Hit - class represent single draw. Includes methods that are responsible for creating a Document object to be added to the database
 * Hits - class represents single-game draws
-* Lotto - class represents the rules of the game. in the constructor set up the game conditions using the enum class.
-* LuckyDip - Inherits from lotto class
-* Interface Generator - Contains one method to be written , intended to implement a random number generator.
+* Lotto - class represents the rules of the game. In the constructor set up the game conditions using the enum class.
+* LuckyDip - inherits from lotto class
+* Interface Generator - contains one method to be written , intended to implement a random number generator.
 * GeneratorConditions - class represents the conditions a random number generator.
 * RandomGenerator - implemetation Interface Generator. Uses streams and GeneratorConditions as method arguments. 
 
