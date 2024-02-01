@@ -6,11 +6,20 @@ This is number lottery. Users make choise six numbers from forty nine or choice 
 - Maven
 - MongoDB
 
-## Installation
-* Clone the repo
+## How to Run
+  * Clone the repo
   ```sh
   git clone https://github.com/WJarze/TottoLottek.git
   ```
+1. Compile the project using build tools such as Maven or Gradle.
+2. Create a JAR file using the command `mvn package` (for Maven) or the equivalent command for other build tools.
+   ```bash
+   java -jar yourFileName.jar
+Run the application and follow the on-screen instructions.
+
+## Requirements
+Installed Java Virtual Machine (JVM).
+Access to build tools such as Maven or Gradle.
   
 ## Functionality
 Main menu
@@ -62,4 +71,7 @@ Package databaseService includes class:
 
 ## Future
 * adding more numerical games of chance
+
+  Thank you for using our application!
+
 
