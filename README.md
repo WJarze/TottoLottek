@@ -5,6 +5,8 @@ This is number lottery. Users make choise six numbers from forty nine or choice 
 - Java
 - Maven
 - MongoDB
+- JUnit
+- Mockito
 
 ## How to Run
   * Clone the repo
